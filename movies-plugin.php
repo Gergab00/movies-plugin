@@ -39,6 +39,7 @@ define( 'MOVIES_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/admin/settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/admin/options.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/admin/template-tags.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/MovieInfo.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/ActorInfo.php';
 require plugin_dir_path( __FILE__ ) .'blocks/build/upcoming-movies/upcoming-movies.php';

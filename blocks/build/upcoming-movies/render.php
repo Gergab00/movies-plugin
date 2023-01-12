@@ -26,7 +26,7 @@ foreach ($organized_movies as $month_year => $movies) {
 		//print_r($movie);
 		?>
 		<div class="col-md-4 pb-2">
-        <div class="card rounded-4 text-bg-dark" style="height: 40rem;">
+        <div class="card rounded-4 text-bg-dark">
             <img src="<?php echo $movie['poster_path']; ?>" class="card-img-top rounded-4">
             <div class="card-body">
                 <h5 class="card-title" style="height: 6rem;"><?php echo $movie['original_title']; ?></h5>

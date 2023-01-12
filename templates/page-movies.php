@@ -46,12 +46,12 @@ if (isset($_GET['movie_id'])) {
  $movie_info = new MovieInfo(API_KEY);
  $details    = $movie_info->get_movie_details($movie_id);
  $movie_info->get_movie_trailer($details);
- $actor_info = new ActorInfo(API_KEY);
+ //$actor_info = new ActorInfo(API_KEY);
  //print_r($details);
  ?>
 
 
-                <div class="card mb-3 bg-transparent rounded-0">
+                <div class="card mb-3 bg-transparent rounded-0 border border-0">
                     <div class="row g-0">
                         <div class="col-md-7">
                             <div class="card-body">
@@ -117,17 +117,23 @@ if (isset($_GET['movie_id'])) {
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-cast" role="tabpanel" aria-labelledby="nav-cast-tab" tabindex="0">
-  <?php 
-  $cast = $movie_info->get_movie_cast($details);
-  print_r($cast);
-  echo '<br><br>';
+    <div class="row">  <?php 
+  $cast = array_slice($movie_info->get_movie_cast($details), 0, 9);
   foreach($cast as $cast_member) {
-    print_r($cast_member);
-    echo '<br><br>';
-    //$actor_details = $actor_info->get_actor_details($cast_member['id']);
-    //print_r($actor_details);
+    ?>
+    <div class="col-md-4">
+        <div class="card m-4">
+            <img src="<?php echo 'https://image.tmdb.org/t/p/w500' . $cast_member['profile_path']; ?>" class="card-img" alt="...">
+            <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <h5 class="card-title bg-info bg-gradient bg-opacity-75 mb-0 p-2"><a href="<?php echo create_actor_link($cast_member); ?>"><?php echo $cast_member['name']; ?></a></h5>
+                <p class="card-text bg-info bg-gradient bg-opacity-50 p-2"><?php echo $cast_member['character']; ?></p>
+            </div>
+        </div>
+    </div>
+    <?php
   }
   ?>
+  </div>
   </div>
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
   <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
