@@ -1,0 +1,35 @@
+{
+  "name": "movies-plugin",
+  "version": "1.0.0",
+  "description": "A plugin that shows information about the latest and most popular movies and actors, using data from the MovieDB API.",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build --webpack-copy-php --webpack-src-dir=./blocks/src --output-path=./blocks/build",
+    "start": "wp-scripts start --webpack-copy-php --webpack-src-dir=./blocks/src --output-path=./blocks/build",
+    "watch-run-css": "nodemon --watch assets/sass/ --ext scss --exec \"npm run css\"",
+    "css": "sass --style expanded --source-map --embed-sources --quiet assets/sass/style.scss assets/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gergab00/movies-plugin.git"
+  },
+  "keywords": [
+    "movies",
+    "REST",
+    "API",
+    "HTTP"
+  ],
+  "author": "Gerardo Gabriel Gonzalez Velazquez",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Gergab00/movies-plugin/issues"
+  },
+  "homepage": "https://github.com/Gergab00/movies-plugin#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^25.1.0",
+    "nodemon": "^2.0.20",
+    "sass": "^1.57.1"
+  }
+}
