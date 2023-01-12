@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "portafolio-theme/upcoming-movies",
+  "category": "widgets",
+  "version": "1.0.2",
+  "title": "Upcoming Movies",
+  "icon": "block-default",
+  "description": "Wordpress theme to create your portfolio and web CV, it is made with the Understrap Framework.",
+  "attributes": {},
+  "supports": {},
+  "textdomain": "portafolio-theme",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
