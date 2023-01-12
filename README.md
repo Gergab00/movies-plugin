@@ -19,6 +19,14 @@ This plugin allows you to display information about the latest and most popular 
 5. Click on the "Activate" button to activate the plugin
 6. Go to the plugin settings page, enter your TMDB API key and configure the plugin options.
 
+## Setup
+To start using all the tools that come with `Movies Plugin`  you need to install the necessary Node.js and Composer dependencies :
+
+```sh
+$ composer install
+$ npm install
+```
+
 ## Usage
 1. To display a list of upcoming movies on your website, create a new page or post and add the shortcode **\[movie_info\]**
 2. To display actor's details, create a new page or post and add the shortcode **\[actor_info\]**
@@ -31,6 +39,30 @@ If you encounter any issues or need assistance, please open an issue on the [Git
 
 ## Contribution
 We welcome any contributions to the plugin, please fork the repository and submit a pull request with your changes.
+
+### Requirements
+
+`Movie Plugin` requires the following dependencies:
+
+- [Node.js](https://nodejs.org/)
+- [Composer](https://getcomposer.org/)
+
+### Available CLI commands
+
+`Movies Plugin` comes packed with CLI commands tailored for WordPress theme development:
+- `npm run build`: build the Gutenberg component files from the Blocks folder.
+- `npm run start`: Create preview files of Gutenberg components from the Blocks folder.
+- `npm run watch-run-css`: is an npm script used to monitor CSS file changes and automatically run a specific task when any changes are detected.
+- `npm run css`: this script is responsible for executing a specific command related to the processing of CSS files.
+- `composer lint:wpcs` : checks all PHP files against [PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/).
+- `composer lint:php` : checks all PHP files for syntax errors.
+- `composer make-pot` : generates a .pot file in the `languages/` directory.
+- `npm run compile:css` : compiles SASS files to css.
+- `npm run compile:rtl` : generates an RTL stylesheet.
+- `npm run watch` : watches all SASS files and recompiles them to css when they change.
+- `npm run lint:scss` : checks all SASS files against [CSS Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/css/).
+- `npm run lint:js` : checks all JavaScript files against [JavaScript Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/javascript/).
+- `npm run bundle` : generates a .zip archive for distribution, excluding development and system files.
 
 ## Changelog
 -1.0: Initial release
