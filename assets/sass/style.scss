@@ -1,0 +1,72 @@
+.movie-img {
+    max-width: 100%;
+    height: 500px;
+}
+
+.movie-release-date {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #555;
+
+    span {
+       text-transform: uppercase;
+       margin-right: 5px;
+       font-weight: normal;
+   }
+}
+
+.movie-genres {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #555;
+
+    .genre-label {
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-right: 5px;
+    }
+}
+
+.stars {
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+  
+    .star {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        font-size: 24px;
+        color: #fff;
+        &:before {
+            content: '\2605';
+        }
+    }
+    // Aqui se establece la cantidad de estrellas segun la popularidad de la pelicula
+    @for $i from 1 through 5 {
+        &.popularity-#{$i} {
+            .star {
+                &:nth-of-type(-n + #{$i}) {
+                    color: #f0c01f;
+                }
+            }
+        }
+    }
+}
+
+.production-companies {
+    width: 100%;
+    padding: 5px 0;
+    text-align: center;
+    
+    .production-company {
+      display: inline-block;
+      padding: 0 5px;
+      font-size: 18px;
+    }
+  }
+  
+
+
+
