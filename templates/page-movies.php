@@ -20,20 +20,17 @@ defined('ABSPATH') || exit;
 
 get_header();
 
-$container = get_theme_mod('understrap_container_type');
-
 ?>
 
 <div class="wrapper" id="page-movies-wrapper">
 
-    <div class="<?php echo esc_attr($container); ?>" id="content" tabindex="-1">
+    <div class="container-lg" id="content" tabindex="-1">
 
         <div class="row">
 
             <?php
 if (!isset($_GET['movie_id'])) {
-// Do the left sidebar check and open div#primary.
- get_template_part('global-templates/left-sidebar-check');
+    get_sidebar();
 }
 ?>
 
@@ -46,12 +43,10 @@ if (isset($_GET['movie_id'])) {
  $movie_info = new MovieInfo(API_KEY);
  $details    = $movie_info->get_movie_details($movie_id);
  $movie_info->get_movie_trailer($details);
- //$actor_info = new ActorInfo(API_KEY);
- //print_r($details);
  ?>
 
 
-                <div class="card mb-3 bg-transparent rounded-0 border border-0">
+                <div class="card my-3 bg-transparent rounded-0 border border-0">
                     <div class="row g-0">
                         <div class="col-md-7">
                             <div class="card-body">
@@ -161,13 +156,6 @@ if (isset($_GET['movie_id'])) {
 ?>
 
             </main>
-
-            <?php
-if (!isset($_GET['movie_id'])) {
-// Do the right sidebar check and close div#primary.
- get_template_part('global-templates/right-sidebar-check');
-}
-?>
 
         </div><!-- .row -->
 

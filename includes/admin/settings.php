@@ -38,7 +38,7 @@ function assign_page_actor_template() {
 
     $movies_plugin_options = get_option( 'movies_plugin_options' );
 
-    $page_id = ($movies_plugin_options['pages'] != '') ? $movies_plugin_options['pages'] : '';
+    $page_id = ($movies_plugin_options['pages_actor'] != '') ? $movies_plugin_options['pages_actor'] : '';
 
     if ( get_the_ID() == $page_id ) {
     

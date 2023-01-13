@@ -81,4 +81,8 @@
   --bs-bg-opacity: 0.75;
 }
 
+a:visited {
+  color: unset;
+}
+
 /*# sourceMappingURL=style.css.map */
