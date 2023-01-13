@@ -101,7 +101,8 @@ class MovieInfo
                 }
             }
         }
-        return json_encode($movies);
+      
+        return $movies;
     }
 
     /**
@@ -293,4 +294,53 @@ class MovieInfo
 
         return $movie_cast;
     }
+
+    public function get_similar_movies($movie)
+    {
+        $movie_id = $movie['id'];
+        $similar_movies = array();
+        $endpoint = 'https://api.themoviedb.org/3/movie/' . $movie_id . '/similar?api_key=' . $this->api_key . '&language=en-US&page=1';
+        $response = wp_remote_get($endpoint);
+        if (is_wp_error($response)) {
+            return $similar_movies;
+        }
+        $data = json_decode(wp_remote_retrieve_body($response), true);
+        if (!empty($data['results'])) {
+            $results = array_slice($data['results'], 0, 9);
+            foreach ($results as $result) {
+                $movie = array();
+                $movie['id'] = $result['id'];
+                $movie['title'] = $result['title'];
+                $movie['genres'] = $this->get_movie_details($result['id'])['genres'];
+                $movie['release_date'] = $result['release_date'];
+                $movie['backdrop_path'] = isset($result['backdrop_path']) ? 'https://image.tmdb.org/t/p/w500' . $result['backdrop_path'] : 'https://via.placeholder.com/500x281';
+                array_push($similar_movies, $movie);
+            }
+        }
+        return $similar_movies;
+    }
+
+    public function get_movie_reviews($movie) {
+
+        $movie_id = $movie['id'];
+        $reviews = array();
+        $endpoint = "https://api.themoviedb.org/3/movie/$movie_id/reviews?api_key=". $this->api_key . "&language=en-US&page=1";
+        $response = wp_remote_get($endpoint);
+        if(is_wp_error($response)) {
+        return $reviews;
+        }
+        $data = json_decode(wp_remote_retrieve_body($response), true);
+
+        if(!empty($data['results'])) {
+        foreach($data['results'] as $result) {
+        $review = array(
+        'author' => $result['author'],
+        'content' => $result['content'],
+        'created_at' => $result['created_at']
+        );
+        array_push($reviews, $review);
+        }
+        }
+        return $reviews;
+        }
 }

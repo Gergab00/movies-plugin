@@ -19,7 +19,7 @@ get_header();
             <div class="col-md-9">
             <?php
     $movie_info = new MovieInfo(API_KEY);
-$movies     = $movie_info->get_popular_movies();
+$movies     = sort_array_alphabetically($movie_info->get_popular_movies());
 if ($movies) {
     // Code to make the API request using $movie_id as parameter
     //print_r($movies);
@@ -66,5 +66,5 @@ the_archive_title('<h1 class="page-title">', '</h1>');
     </main><!-- #main -->
 </div>
 <?php
-get_sidebar();
+
 get_footer();

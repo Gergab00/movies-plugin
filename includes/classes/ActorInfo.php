@@ -228,4 +228,52 @@ class ActorInfo
 
         return $actor_images;
     }
+
+/**
+ * 
+ * Retrieves a list of popular actors from the MovieDB API by page.
+ * 
+ * @method get_popular_actors
+ * @param {int} page - The page number to retrieve actors for.
+ * @return {array} An array of actors with their profile path and name.
+ * 
+ */
+public function get_popular_actors()
+{
+
+$actors = array();
+
+for ($i = 1; $i <= 5; $i++) {
+
+$endpoint = 'https://api.themoviedb.org/3/person/popular';
+$query_params = array(
+'api_key' => $this->__api_key,
+'language' => $this->__language,
+'page' => $i,
+);
+
+$url      = add_query_arg($query_params, $endpoint);
+$response = wp_remote_get($url);
+
+if (is_wp_error($response)) {
+    return array();
+}
+
+$data    = json_decode(wp_remote_retrieve_body($response), true);
+
+if (!empty($data['results'])) {
+    $results = array_slice($data['results'], 0, 9);
+    foreach ($results as $result) {
+        array_push($actors, array(
+            'id'=> $result['id'],
+            'profile_path' => isset($result['profile_path']) ? 'https://image.tmdb.org/t/p/w500' . $result['profile_path'] : 'https://via.placeholder.com/500x750',
+            'name' => $result['name'],
+        ));
+    }
+}
+  
+  }
+return $actors;
+}
+
 }

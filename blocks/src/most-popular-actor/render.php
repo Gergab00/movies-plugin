@@ -9,7 +9,7 @@ extract($attributes);
 <section <?php echo get_block_wrapper_attributes(['class' => 'row']); ?> data-block="actors">
     <?php
 $actors = $this->getActors();
-print_r($actors);
+//print_r($actors);
 
 foreach ($actors as $actor) {
     ?>
@@ -18,7 +18,7 @@ foreach ($actors as $actor) {
             <img src="<?php echo $actor['profile_path']; ?>" class="card-img-top rounded-4">
             <div class="card-body">
                 <h5 class="card-title" style="height: 6rem;"><?php echo $actor['name']; ?></h5>
-                <a href="<?php echo $this->create_actor_link($actor); ?>" class="btn btn-light">See more details</a>
+                <a href="<?php echo $this->create_actor_link($actor); ?>" class="btn btn-primary">See more details</a>
             </div>
         </div>
     </div>

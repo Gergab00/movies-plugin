@@ -96,11 +96,8 @@ function organize_by_title($movies)
     return $organized_movies;
 }
 
-function display_movies_pagination($movies_json)
+function display_movies_pagination($movies)
 {
-    //convert the JSON string to an array
-    $movies = json_decode($movies_json, true);
-
     //calculate the total number of pages
     $total_pages = ceil(count($movies) / 12);
 
@@ -135,11 +132,11 @@ function display_movies_pagination($movies_json)
             echo '<div class="card m-4 bg-dark text-white">';
             echo '<img src="' . $movie['backdrop_path'] . '" class="card-img-top">';
             echo '<div class="card-body" style="height: 100%;">';
-            echo '<h5 class="card-title" style="height: 2rem;">' . $movie['title'] . '</h5>';
-            echo '<p class="card-text my-2" style="height: 4rem;">';
+            echo '<h5 class="card-title" style="height: 4rem;"><a href="' . create_movie_link($movie) . '">' . $movie['title'] . '</a></h5>';
+            echo '<p class="card-text my-2" style="height: 6rem;">';
             echo 'Genres: ';
             foreach ($movie['genre_ids'] as $genre_id) {
-                echo '<span class="badge badge-secondary">' . $genre_id . '</span> ';
+                echo '<span class="badge text-bg-light">' . $genre_id . '</span> ';
             }
             echo '</p>';
             echo '<p class="card-text">Release Date: ' . $movie['release_date'] . '</p>';
@@ -154,4 +151,75 @@ function display_movies_pagination($movies_json)
     }
 
     echo '</div>';
+}
+
+function display_actors_pagination($actors)
+{
+
+    //calculate the total number of pages
+    $total_pages = ceil(count($actors) / 12);
+
+    //display the pagination buttons
+    echo '<nav aria-label="Actors pagination">';
+    echo '<ul class="justify-content-center nav nav-pills mb-3" id="pills-tab" role="tablist">';
+    for ($i = 1; $i <= $total_pages; $i++) {
+        if (1 == $i) {
+            echo '<li class="nav-item active">';
+            echo '<button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-' . $i . '" type="button" role="tab" aria-controls="pills-' . $i . '" aria-selected="true"> ' . $i . '</button>';
+        } else {
+            echo '<li class="nav-item">';
+            echo '<button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-' . $i . '" type="button" role="tab" aria-controls="pills-' . $i . '" aria-selected="false"> ' . $i . '</button>';
+        }
+        echo '</li>';
+    }
+    echo '</ul>';
+    echo '</nav>';
+
+    echo '<div class="tab-content" id="pills-tabContent">';
+    $ni     = 0;
+    $nf     = 12;
+    for ($i = 1; $i <= $total_pages; $i++) {
+        $active = (1 == $i) ? "active" : "";
+        echo '<div class="tab-pane fade show ' . $active . '" id="pills-' . $i . '" role="tabpanel" aria-labelledby="pills-' . $i . '-tab" tabindex="0">';
+        //get the 12 actors for the current page
+        $current_actors = array_slice($actors, $ni, $nf);
+        //display the actors in a grid using Bootstrap
+        echo '<div class="row">';
+        foreach ($current_actors as $actor) {
+            echo '<div class="col-md-4">';
+            echo '<div class="card m-4 bg-dark text-white">';
+            echo '<img src="' . $actor['profile_path'] . '" class="card-img-top">';
+            echo '<div class="card-body" style="height: 100%;">';
+            echo '<h5 class="card-title" style="height: 4rem;"><a href="' . create_actor_link($actor) . '">' . $actor['name'] . '</a></h5>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
+        echo '</div>';
+        $ni = $ni + 12;
+        $nf = $nf + 12;
+        echo '</div>';
+    }
+
+    echo '</div>';
+}
+
+function sort_array_alphabetically($array)
+{
+    $param = null;
+    if (array_key_exists('name', $array)) {
+        $param = 'name';
+    } else if (array_key_exists('title', $array)) {
+        $param = 'title';
+    }
+
+    if (!$param) {
+        return $array;
+    }
+
+    usort($array, function ($a, $b) use ($param) {
+        return strcmp($a[$param], $b[$param]);
+    });
+
+    return $array;
 }

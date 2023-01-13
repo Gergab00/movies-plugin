@@ -35,7 +35,6 @@ if (isset($_GET['movie_id'])) {
     $movie_info->get_movie_trailer($details);
     ?>
 
-
                 <div class="card my-3 bg-transparent rounded-0 border border-0">
                     <div class="row g-0">
                         <div class="col-md-7">
@@ -95,9 +94,8 @@ if (isset($_GET['movie_id'])) {
                     <nav>
   <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
     <button class="nav-link active" id="nav-cast-tab" data-bs-toggle="tab" data-bs-target="#nav-cast" type="button" role="tab" aria-controls="nav-cast" aria-selected="true">Cast</button>
-    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-    <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled" aria-selected="false" disabled>Disabled</button>
+    <button class="nav-link" id="nav-reviews-tab" data-bs-toggle="tab" data-bs-target="#nav-reviews" type="button" role="tab" aria-controls="nav-reviews" aria-selected="false">Reviews</button>
+    <button class="nav-link" id="nav-similar-tab" data-bs-toggle="tab" data-bs-target="#nav-similar" type="button" role="tab" aria-controls="nav-similar" aria-selected="false">List of similar Movies</button>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -105,10 +103,11 @@ if (isset($_GET['movie_id'])) {
     <div class="row">  <?php
      $cast = array_slice($movie_info->get_movie_cast($details), 0, 9);
     foreach ($cast as $cast_member) {
+        $profile = isset($cast_member['profile_path']) ? 'https://image.tmdb.org/t/p/w500' . $cast_member['profile_path'] : 'https://via.placeholder.com/300x450';
         ?>
     <div class="col-md-4">
         <div class="card m-4">
-            <img src="<?php echo 'https://image.tmdb.org/t/p/w500' . $cast_member['profile_path']; ?>" class="card-img" alt="...">
+            <img src="<?php echo $profile; ?>" class="card-img" alt="...">
             <div class="card-img-overlay d-flex flex-column justify-content-end">
                 <h5 class="card-title bg-info bg-gradient bg-opacity-75 mb-0 p-2"><a href="<?php echo create_actor_link($cast_member); ?>"><?php echo $cast_member['name']; ?></a></h5>
                 <p class="card-text bg-info bg-gradient bg-opacity-50 p-2"><?php echo $cast_member['character']; ?></p>
@@ -120,12 +119,45 @@ if (isset($_GET['movie_id'])) {
     ?>
   </div>
   </div>
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">...</div>
-  <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">...</div>
+  <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab" tabindex="0">
+    <div class="row">
+    <?php
+    $reviews = array_slice($movie_info->get_movie_reviews($details), 0, 9);
+    foreach ($reviews as $review) {
+        ?>
+    <div class="col-md-4">
+        <div class="card m-4">
+            <div class="card-body bg-dark">
+                <h5 class="card-title"><?php echo $review['author']; ?></h5>
+                <p class="card-text"><?php echo $review['content']; ?></p>
+            </div>
+        </div>
+    </div>
+    <?php
+    }
+    ?>
+  </div>
+  <div class="tab-pane fade" id="nav-similar" role="tabpanel" aria-labelledby="nav-similar-tab" tabindex="0">
+    <div class="row">
+    <?php
+    $similar_movies = array_slice($movie_info->get_similar_movies($details), 0, 9);
+    foreach ($similar_movies as $similar_movie) {
+        ?>
+    <div class="col-md-4">
+        <div class="card m-4">
+            <img src="<?php echo $similar_movie['backdrop_path']; ?>" class="card-img" alt="...">
+            <div class="card-img-overlay d-flex flex-column justify-content-end">
+                <h5 class="card-title bg-info bg-gradient bg-opacity-75 text-black mb-0 p-2"><a href="<?php echo create_movie_link($similar_movie); ?>"><?php echo $similar_movie['title']; ?></a></h5>
+                <p class="card-text bg-info bg-gradient bg-opacity-50 text-black p-2"><?php echo $similar_movie['release_date']; ?></p>
+            </div>
+        </div>
+    </div>
+    <?php
+    }
+    ?>
+    </div>
+    </div>
 </div>
-                    </div>
-                </div>
                 <?php
 } else {
     if (have_posts()) {
