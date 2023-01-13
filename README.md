@@ -19,6 +19,15 @@ This plugin allows you to display information about the latest and most popular 
 5. Click on the "Activate" button to activate the plugin
 6. Go to the plugin settings page, enter your TMDB API key and configure the plugin options.
 
+## Installation of the test site
+1. Download both of these files to your computer from this link [wordpress-challenge-movies](https://drive.google.com/drive/folders/1_8FXirdeLc-caoLTdC3OVi3TjOEyEFRy?usp=share_link)
+2. Create a new database and database user on the destination website.
+3. Upload the .zip file and installer.php file to the destination website.
+4. Navigate to the installer.php file in your browser (example: http://yoursite.com/installer.php).
+5. Follow the prompts to enter your database information and complete the installation process.
+6. Once the installation is complete, make sure to remove the installer.php file and the duplicator package files from the destination website for security reasons.
+7. This installation already has the theme and plugin necessary to display the site.
+
 ## Setup
 To start using all the tools that come with `Movies Plugin`  you need to install the necessary Node.js and Composer dependencies :
 
