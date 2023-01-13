@@ -30,8 +30,7 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit({attributes, setAttributes}) {
-	
+export default function Edit( { attributes, setAttributes } ) {
 	const bodyTitle = 'My Block Settings';
 	const opened = true;
 
@@ -40,7 +39,10 @@ export default function Edit({attributes, setAttributes}) {
 			<Panel header="Upcoming Movies">
 				<PanelBody title={ bodyTitle } opened={ opened }>
 					<PanelRow>
-						{ __( 'Upcoming Movies – Here the cards with the movies will be shown.', 'movies-plugin' ) }
+						{ __(
+							'Upcoming Movies – Here the cards with the movies will be shown.',
+							'movies-plugin'
+						) }
 					</PanelRow>
 				</PanelBody>
 			</Panel>

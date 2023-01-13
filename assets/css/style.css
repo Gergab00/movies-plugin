@@ -82,7 +82,7 @@
 }
 
 a:visited {
-  color: unset;
+  color: unset !important;
 }
 
 /*# sourceMappingURL=style.css.map */

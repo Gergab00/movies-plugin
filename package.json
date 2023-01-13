@@ -1,44 +1,44 @@
 {
-  "name": "movies-plugin",
-  "version": "1.0.0",
-  "description": "A plugin that shows information about the latest and most popular movies and actors, using data from the MovieDB API.",
-  "main": "index.js",
-  "scripts": {
-    "build": "wp-scripts build --webpack-copy-php --webpack-src-dir=./blocks/src --output-path=./blocks/build",
-    "start": "wp-scripts start --webpack-copy-php --webpack-src-dir=./blocks/src --output-path=./blocks/build",
-    "watch-run-css": "nodemon --watch assets/sass/ --ext scss --exec \"npm run css\"",
-    "css": "sass --style expanded --source-map --embed-sources --quiet assets/sass/style.scss assets/css/style.css",
-    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
-    "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
-    "compile:rtl": "rtlcss style.css style-rtl.css",
-    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
-    "lint:js": "wp-scripts lint-js 'js/*.js'",
-    "bundle": "dir-archiver --src . --dest ../movies_theme.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Gergab00/movies-plugin.git"
-  },
-  "keywords": [
-    "movies",
-    "REST",
-    "API",
-    "HTTP"
-  ],
-  "author": "Gerardo Gabriel Gonzalez Velazquez",
-  "license": "GPL-2.0-or-later",
-  "bugs": {
-    "url": "https://github.com/Gergab00/movies-plugin/issues"
-  },
-  "homepage": "https://github.com/Gergab00/movies-plugin#readme",
-  "dependencies": {
-  },
-  "devDependencies": {
-    "@wordpress/scripts": "^25.1.0",
-    "nodemon": "^2.0.20",
-    "sass": "^1.57.1",
-    "dir-archiver": "^1.1.1",
-    "node-sass": "^7.0.1",
-    "rtlcss": "^3.5.0"
-  }
+	"name": "movies-plugin",
+	"version": "1.0.0",
+	"description": "A plugin that shows information about the latest and most popular movies and actors, using data from the MovieDB API.",
+	"main": "index.js",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php --webpack-src-dir=./blocks/src --output-path=./blocks/build",
+		"start": "wp-scripts start --webpack-copy-php --webpack-src-dir=./blocks/src --output-path=./blocks/build",
+		"watch-run-css": "nodemon --watch assets/sass/ --ext scss --exec \"npm run css\"",
+		"css": "sass --style expanded --source-map --embed-sources --quiet assets/sass/style.scss assets/css/style.css",
+		"watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
+		"compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
+		"compile:rtl": "rtlcss style.css style-rtl.css",
+		"lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
+		"lint:js": "wp-scripts lint-js 'js/*.js'",
+		"bundle": "dir-archiver --src . --dest ../movies_theme.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock",
+		"format": "wp-scripts format"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Gergab00/movies-plugin.git"
+	},
+	"keywords": [
+		"movies",
+		"REST",
+		"API",
+		"HTTP"
+	],
+	"author": "Gerardo Gabriel Gonzalez Velazquez",
+	"license": "GPL-2.0-or-later",
+	"bugs": {
+		"url": "https://github.com/Gergab00/movies-plugin/issues"
+	},
+	"homepage": "https://github.com/Gergab00/movies-plugin#readme",
+	"dependencies": {},
+	"devDependencies": {
+		"@wordpress/scripts": "^25.1.0",
+		"nodemon": "^2.0.20",
+		"sass": "^1.57.1",
+		"dir-archiver": "^1.1.1",
+		"node-sass": "^7.0.1",
+		"rtlcss": "^3.5.0"
+	}
 }

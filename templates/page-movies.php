@@ -28,12 +28,12 @@ if (!isset($_GET['movie_id'])) {
 
                 <?php
 if (isset($_GET['movie_id'])) {
- $movie_id = $_GET['movie_id'];
- // Code to make the API request using $movie_id as parameter
- $movie_info = new MovieInfo(API_KEY);
- $details    = $movie_info->get_movie_details($movie_id);
- $movie_info->get_movie_trailer($details);
- ?>
+    $movie_id = $_GET['movie_id'];
+    // Code to make the API request using $movie_id as parameter
+    $movie_info = new MovieInfo(API_KEY);
+    $details    = $movie_info->get_movie_details($movie_id);
+    $movie_info->get_movie_trailer($details);
+    ?>
 
 
                 <div class="card my-3 bg-transparent rounded-0 border border-0">
@@ -102,10 +102,10 @@ if (isset($_GET['movie_id'])) {
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-cast" role="tabpanel" aria-labelledby="nav-cast-tab" tabindex="0">
-    <div class="row">  <?php 
-  $cast = array_slice($movie_info->get_movie_cast($details), 0, 9);
-  foreach($cast as $cast_member) {
-    ?>
+    <div class="row">  <?php
+     $cast = array_slice($movie_info->get_movie_cast($details), 0, 9);
+    foreach ($cast as $cast_member) {
+        ?>
     <div class="col-md-4">
         <div class="card m-4">
             <img src="<?php echo 'https://image.tmdb.org/t/p/w500' . $cast_member['profile_path']; ?>" class="card-img" alt="...">
@@ -116,8 +116,8 @@ if (isset($_GET['movie_id'])) {
         </div>
     </div>
     <?php
-  }
-  ?>
+    }
+    ?>
   </div>
   </div>
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">...</div>
@@ -128,19 +128,17 @@ if (isset($_GET['movie_id'])) {
                 </div>
                 <?php
 } else {
- if (have_posts()) {
+    if (have_posts()) {
+        while (have_posts()) {
+            the_post();
+            get_template_part('loop-templates/content', 'page');
 
-  while (have_posts()) {
-   the_post();
-   get_template_part('loop-templates/content', 'page');
-
-   // If comments are open or we have at least one comment, load up the comment template.
-   if (comments_open() || get_comments_number()) {
-    comments_template();
-   }
-  }
-
- }
+            // If comments are open or we have at least one comment, load up the comment template.
+            if (comments_open() || get_comments_number()) {
+                comments_template();
+            }
+        }
+    }
 }
 
 ?>

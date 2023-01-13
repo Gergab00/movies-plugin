@@ -31,33 +31,44 @@ You should have received a copy of the GNU General Public License
 along with Movies Plugin. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
 */
 
-function activate_movies_plugin() {
+function activate_movies_plugin()
+{
 }
 
-define( 'MOVIES_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'MOVIES_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define('MOVIES_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('MOVIES_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-require_once plugin_dir_path( __FILE__ ) . 'includes/admin/settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/admin/options.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/admin/template-tags.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/MovieInfo.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/classes/ActorInfo.php';
-require plugin_dir_path( __FILE__ ) .'blocks/build/upcoming-movies/upcoming-movies.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin/settings.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin/options.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin/template-tags.php';
+require_once plugin_dir_path(__FILE__) . 'includes/classes/MovieInfo.php';
+require_once plugin_dir_path(__FILE__) . 'includes/classes/ActorInfo.php';
+require plugin_dir_path(__FILE__) .'blocks/build/upcoming-movies/upcoming-movies.php';
+require plugin_dir_path(__FILE__) .'blocks/build/most-popular-actor/most-popular-actor.php';
 
-$movies_plugin_options = get_option( 'movies_plugin_options' ); // Array of All Options
+$movies_plugin_options = get_option('movies_plugin_options'); // Array of All Options
 $api_key = $movies_plugin_options['api_key']; // API Key
 define('API_KEY', $api_key);
 
 $movie_info = new MovieInfo(API_KEY);
+$actor_info = new ActorInfo(API_KEY);
 $upcomingmovies = new UpcomingMovies();
+$mostpopularactor = new MostPopularActor();
 
 $movies_id = $movie_info->getMovies();
 $movies_details = array();
 foreach ($movies_id as $id) {
-  array_push($movies_details, $movie_info->get_movie_details($id));
+    array_push($movies_details, $movie_info->get_movie_details($id));
 }
 $upcomingmovies->setMovies($movies_details);
 $upcomingmovies->init();
 
-register_activation_hook( __FILE__, 'activate_movies_plugin' );
-  
+$actors_id = $actor_info->get_top_actors();
+$actors_details = array();
+foreach ($actors_id as $id) {
+    array_push($actors_details, $actor_info->get_actor_details($id));
+}
+$mostpopularactor->setActor($actors_details);
+$mostpopularactor->init();
+
+register_activation_hook(__FILE__, 'activate_movies_plugin');

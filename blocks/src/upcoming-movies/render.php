@@ -1,9 +1,9 @@
 <?php
 
 // Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
-extract( $attributes );
+extract($attributes);
 
 ?>
 
@@ -13,10 +13,9 @@ extract( $attributes );
 $organized_movies = $this->organize_by_date($this->getMovies());
 
 foreach ($organized_movies as $month_year => $movies) {
-
-  foreach ($movies as $movie) {
-		//print_r($movie);
-		?>
+    foreach ($movies as $movie) {
+        //print_r($movie);
+        ?>
 		<div class="col-md-4 pb-2">
         <div class="card rounded-4 text-bg-dark">
             <img src="<?php echo $movie['poster_path']; ?>" class="card-img-top rounded-4">
@@ -30,7 +29,7 @@ foreach ($organized_movies as $month_year => $movies) {
         </div>
 		</div>
         <?php
-  }
+    }
 }
-	?>
+?>
 </section>

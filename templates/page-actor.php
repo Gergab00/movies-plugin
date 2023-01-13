@@ -31,8 +31,8 @@ get_header();
 
             <?php
 if (!isset($_GET['actor_id'])) {
-// Do the left sidebar check and open div#primary.
-get_sidebar();
+    // Do the left sidebar check and open div#primary.
+    get_sidebar();
 }
 ?>
 
@@ -40,12 +40,12 @@ get_sidebar();
 
                 <?php
 if (isset($_GET['actor_id'])) {
- $actor_id = $_GET['actor_id'];
- // Code to make the API request using $actor_id as parameter
- $actor_info = new ActorInfo(API_KEY);
- $details    = $actor_info->get_actor_details($actor_id);
- 
- ?>
+    $actor_id = $_GET['actor_id'];
+    // Code to make the API request using $actor_id as parameter
+    $actor_info = new ActorInfo(API_KEY);
+    $details    = $actor_info->get_actor_details($actor_id);
+
+    ?>
 
 
                 <div class="card my-3 bg-transparent rounded-0 border border-0">
@@ -81,14 +81,13 @@ if (isset($_GET['actor_id'])) {
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-movies" role="tabpanel" aria-labelledby="nav-movies-tab" tabindex="0">
-    <div class="row">  <?php 
-  $movies = array_slice($actor_info->get_actor_movies($details), 0, 9);
-  foreach($movies as $movie) {
-    
-    if( $movie['backdrop_path'] == null ) {
-      $movie['backdrop_path'] = 'https://via.placeholder.com/370x200';
-    }
-    ?>
+    <div class="row">  <?php
+     $movies = array_slice($actor_info->get_actor_movies($details), 0, 9);
+    foreach ($movies as $movie) {
+        if ($movie['backdrop_path'] == null) {
+            $movie['backdrop_path'] = 'https://via.placeholder.com/370x200';
+        }
+        ?>
     <div class="col-md-4">
         <div class="card m-4">
             <img src="<?php echo $movie['backdrop_path']; ?>" class="card-img" alt="...">
@@ -100,13 +99,13 @@ if (isset($_GET['actor_id'])) {
         </div>
     </div>
     <?php
-  }
-  ?>
+    }
+    ?>
   </div>
   </div>
   <div class="tab-pane fade" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="0">
     <?php
-    echo get_bootstrap_images_carousel($actor_info->get_actor_images($details)); 
+      echo get_bootstrap_images_carousel($actor_info->get_actor_images($details));
     ?>
   </div>
 </div>
@@ -114,19 +113,17 @@ if (isset($_GET['actor_id'])) {
                 </div>
                 <?php
 } else {
- if (have_posts()) {
+    if (have_posts()) {
+        while (have_posts()) {
+            the_post();
+            get_template_part('loop-templates/content', 'page');
 
-  while (have_posts()) {
-   the_post();
-   get_template_part('loop-templates/content', 'page');
-
-   // If comments are open or we have at least one comment, load up the comment template.
-   if (comments_open() || get_comments_number()) {
-    comments_template();
-   }
-  }
-
- }
+            // If comments are open or we have at least one comment, load up the comment template.
+            if (comments_open() || get_comments_number()) {
+                comments_template();
+            }
+        }
+    }
 }
 
 ?>

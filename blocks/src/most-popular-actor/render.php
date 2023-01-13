@@ -1,9 +1,9 @@
 <?php
 
 // Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
-extract( $attributes );
+extract($attributes);
 
 ?>
 <section <?php echo get_block_wrapper_attributes(['class' => 'row']); ?> data-block="actors">
@@ -12,7 +12,7 @@ $actors = $this->getActors();
 print_r($actors);
 
 foreach ($actors as $actor) {
-?>
+    ?>
     <div class="col-md-4 pb-2">
         <div class="card rounded-4 text-bg-dark">
             <img src="<?php echo $actor['profile_path']; ?>" class="card-img-top rounded-4">
