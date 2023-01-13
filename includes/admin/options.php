@@ -14,9 +14,9 @@ class Options
     {
         add_options_page(
             'Movies Plugin Options', // page_title
-             'Movies Plugin Options', // menu_title
-             'manage_options', // capability
-             'movies-plugin-options', // menu_slug
+            'Movies Plugin Options', // menu_title
+            'manage_options', // capability
+            'movies-plugin-options', // menu_slug
             array($this, 'movies_plugin_options_create_admin_page') // function
         );
     }
@@ -48,39 +48,55 @@ settings_fields('movies_plugin_options_option_group');
     {
         register_setting(
             'movies_plugin_options_option_group', // option_group
-             'movies_plugin_options', // option_name
+            'movies_plugin_options', // option_name
             array($this, 'movies_plugin_options_sanitize') // sanitize_callback
         );
 
         add_settings_section(
             'movies_plugin_options_setting_section', // id
-             'Settings', // title
+            'Settings', // title
             array($this, 'movies_plugin_options_section_info'), // callback
-             'movies-plugin-options-admin' // page
+            'movies-plugin-options-admin' // page
         );
 
         add_settings_field(
             'api_key', // id
-             'API Key', // title
+            'API Key', // title
             array($this, 'api_key_callback'), // callback
-             'movies-plugin-options-admin', // page
-             'movies_plugin_options_setting_section' // section
+            'movies-plugin-options-admin', // page
+            'movies_plugin_options_setting_section' // section
         );
 
         add_settings_field(
             'pages', // id
-             'Pages for Movies', // title
+            'Pages for Movies', // title
             array($this, 'pages_movies_callback'), // callback
-             'movies-plugin-options-admin', // page
-             'movies_plugin_options_setting_section' // section
+            'movies-plugin-options-admin', // page
+            'movies_plugin_options_setting_section' // section
         );
 
         add_settings_field(
             'pages_actor', // id
-             'Pages for Actor', // title
+            'Pages for Actor', // title
             array($this, 'pages_actor_callback'), // callback
-             'movies-plugin-options-admin', // page
-             'movies_plugin_options_setting_section' // section
+            'movies-plugin-options-admin', // page
+            'movies_plugin_options_setting_section' // section
+        );
+
+        add_settings_field(
+            'archive_movies', // id
+            'Archives for Movies', // title
+            array($this, 'archive_movies_callback'), // callback
+            'movies-plugin-options-admin', // page
+            'movies_plugin_options_setting_section' // section
+        );
+
+        add_settings_field(
+            'archive_actors', // id
+            'Archives for Actors', // title
+            array($this, 'archive_actors_callback'), // callback
+            'movies-plugin-options-admin', // page
+            'movies_plugin_options_setting_section' // section
         );
     }
 
@@ -104,18 +120,54 @@ settings_fields('movies_plugin_options_option_group');
             $sanitary_values['pages_actor'] = $input['pages_actor'];
         }
 
+        if (isset($input['archive_movies'])) {
+            $sanitary_values['archive_movies'] = $input['archive_movies'];
+        }
+
+        if (isset($input['archive_actors'])) {
+            $sanitary_values['archive_actors'] = $input['archive_actors'];
+        }
+
         return $sanitary_values;
     }
 
-    public function movies_plugin_options_section_info()
+    public function archive_actors_callback()
     {
+        $pages = get_pages();
+        ?> <select name="movies_plugin_options[archive_actors]" id="pages">
+        <option>Select a page</option>
+        <?php
+$selected_page = isset($this->movies_plugin_options['archive_actors']) ? esc_attr($this->movies_plugin_options['archive_actors']) : '';
+        foreach ($pages as $page) {
+            $option = '<option value="' . $page->ID . '" ' . selected($selected_page, $page->ID, false) . '>';
+            $option .= $page->post_title;
+            $option .= '</option>';
+            echo $option;
+        }
+    }
 
+    public function archive_movies_callback()
+    {
+        $pages = get_pages();
+        ?> <select name="movies_plugin_options[archive_movies]" id="pages">
+        <option>Select a page</option>
+        <?php
+$selected_page = isset($this->movies_plugin_options['archive_movies']) ? esc_attr($this->movies_plugin_options['archive_movies']) : '';
+        foreach ($pages as $page) {
+            $option = '<option value="' . $page->ID . '" ' . selected($selected_page, $page->ID, false) . '>';
+            $option .= $page->post_title;
+            $option .= '</option>';
+            echo $option;
+        }
+
+        ?>
+    </select> <?php
     }
 
     /**
-     * Get the settings option array and print one of its values
-     * @return void
-     */
+      * Get the settings option array and print one of its values
+      * @return void
+      */
     public function api_key_callback()
     {
         printf(
@@ -145,13 +197,13 @@ $selected_page = isset($this->movies_plugin_options['pages']) ? esc_attr($this->
 
         ?>
     </select> <?php
-}
+    }
 
     /**
-     * Get all the pages and add them to the select dropdown
-     *
-     * @return void
-     */
+      * Get all the pages and add them to the select dropdown
+      *
+      * @return void
+      */
     public function pages_actor_callback()
     {
         $pages = get_pages();
@@ -168,8 +220,12 @@ $selected_page = isset($this->movies_plugin_options['pages_actor']) ? esc_attr($
 
         ?>
     </select> <?php
-}
+    }
 
+    public function movies_plugin_options_section_info()
+    {
+        print 'Enter your settings below:';
+    }
 }
 if (is_admin()) {
     $movies_plugin_options = new Options();

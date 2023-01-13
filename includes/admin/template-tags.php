@@ -1,48 +1,45 @@
 <?php
 
- /**
-  *
-  * Create a link to a actor page
-  *
-  * @param array $actor Actor data on JSON format
-  * @return string Link to a actor page
-  *
-  */
-  function create_actor_link($actor)
-  {
- 
-   $options = get_option('movies_plugin_options');
-   if(!isset($options['pages_actor'])) {
-    return '';
-   }
-   $page_id = ('' != $options['pages_actor']) ? $options['pages_actor'] : '';
- 
-   if ($page_id) {
- 
-    $link = add_query_arg('actor_id', $actor['id'], get_permalink($page_id));
-    return $link;
-   }
-   return '';
-  }
+/**
+ *
+ * Create a link to a actor page
+ *
+ * @param array $actor Actor data on JSON format
+ * @return string Link to a actor page
+ *
+ */
+function create_actor_link($actor)
+{
+    $options = get_option('movies_plugin_options');
+    if (!isset($options['pages_actor'])) {
+        return '';
+    }
+    $page_id = ('' != $options['pages_actor']) ? $options['pages_actor'] : '';
 
-  function create_movie_link($movie)
-  {
- 
-   $options = get_option('movies_plugin_options');
-   if(!isset($options['pages'])) {
+    if ($page_id) {
+        $link = add_query_arg('actor_id', $actor['id'], get_permalink($page_id));
+        return $link;
+    }
     return '';
-   }
-   $page_id = ('' != $options['pages']) ? $options['pages'] : '';
- 
-   if ($page_id) {
- 
-    $link = add_query_arg('movie_id', $movie['id'], get_permalink($page_id));
-    return $link;
-   }
-   return '';
-  }
+}
 
-  function get_bootstrap_images_carousel($images_arr) {
+function create_movie_link($movie)
+{
+    $options = get_option('movies_plugin_options');
+    if (!isset($options['pages'])) {
+        return '';
+    }
+    $page_id = ('' != $options['pages']) ? $options['pages'] : '';
+
+    if ($page_id) {
+        $link = add_query_arg('movie_id', $movie['id'], get_permalink($page_id));
+        return $link;
+    }
+    return '';
+}
+
+function get_bootstrap_images_carousel($images_arr)
+{
     if (empty($images_arr)) {
         return '<div>No images available</div>';
     }
@@ -50,7 +47,7 @@
     $carousel_html .= '<div class="carousel-indicators">';
     for ($i = 0; $i < count($images_arr); $i++) {
         $carousel_html .= '<button data-bs-target="#actorImagesCarousel" data-bs-slide-to="' . $i . '"';
-        if ($i === 0) {
+        if (0 === $i) {
             $carousel_html .= ' class="active"';
             $carousel_html .= ' aria-current="true"';
         }
@@ -61,7 +58,7 @@
     $carousel_html .= '<div class="carousel-inner">';
     for ($i = 0; $i < count($images_arr); $i++) {
         $carousel_html .= '<div class="carousel-item';
-        if ($i === 0) {
+        if (0 === $i) {
             $carousel_html .= ' active';
         }
         $carousel_html .= '">';
@@ -79,4 +76,82 @@
     $carousel_html .= '</button>';
     $carousel_html .= '</div>';
     return $carousel_html;
+}
+
+function organize_by_title($movies)
+{
+    $organized_movies = array();
+    foreach ($movies as $movie) {
+        $title = $movie['original_title'];
+
+        if (!isset($organized_movies[$title])) {
+            $organized_movies[$title] = array();
+        }
+
+        $organized_movies[$title][] = $movie;
+    }
+
+    ksort($organized_movies);
+
+    return $organized_movies;
+}
+
+function display_movies_pagination($movies_json)
+{
+    //convert the JSON string to an array
+    $movies = json_decode($movies_json, true);
+
+    //calculate the total number of pages
+    $total_pages = ceil(count($movies) / 12);
+
+    //display the pagination buttons
+    echo '<nav aria-label="Movies pagination">';
+    echo '<ul class="justify-content-center nav nav-pills mb-3" id="pills-tab" role="tablist">';
+    for ($i = 1; $i <= $total_pages; $i++) {
+        if (1 == $i) {
+            echo '<li class="nav-item active">';
+            echo '<button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-' . $i . '" type="button" role="tab" aria-controls="pills-' . $i . '" aria-selected="true"> ' . $i . '</button>';
+        } else {
+            echo '<li class="nav-item">';
+            echo '<button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-' . $i . '" type="button" role="tab" aria-controls="pills-' . $i . '" aria-selected="false"> ' . $i . '</button>';
+        }
+        echo '</li>';
+    }
+    echo '</ul>';
+    echo '</nav>';
+
+    echo '<div class="tab-content" id="pills-tabContent">';
+    $ni     = 0;
+    $nf     = 12;
+    for ($i = 1; $i <= $total_pages; $i++) {
+        $active = (1 == $i) ? "active" : "";
+        echo '<div class="tab-pane fade show ' . $active . '" id="pills-' . $i . '" role="tabpanel" aria-labelledby="pills-' . $i . '-tab" tabindex="0">';
+        //get the 12 movies for the current page
+        $current_movies = array_slice($movies, $ni, $nf);
+        //display the movies in a grid using Bootstrap
+        echo '<div class="row">';
+        foreach ($current_movies as $movie) {
+            echo '<div class="col-md-4">';
+            echo '<div class="card m-4 bg-dark text-white">';
+            echo '<img src="' . $movie['backdrop_path'] . '" class="card-img-top">';
+            echo '<div class="card-body" style="height: 100%;">';
+            echo '<h5 class="card-title" style="height: 2rem;">' . $movie['title'] . '</h5>';
+            echo '<p class="card-text my-2" style="height: 4rem;">';
+            echo 'Genres: ';
+            foreach ($movie['genre_ids'] as $genre_id) {
+                echo '<span class="badge badge-secondary">' . $genre_id . '</span> ';
+            }
+            echo '</p>';
+            echo '<p class="card-text">Release Date: ' . $movie['release_date'] . '</p>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
+        echo '</div>';
+        $ni = $ni + 12;
+        $nf = $nf + 12;
+        echo '</div>';
+    }
+
+    echo '</div>';
 }
