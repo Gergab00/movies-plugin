@@ -101,7 +101,7 @@ class MovieInfo
                 }
             }
         }
-      
+
         return $movies;
     }
 
@@ -320,27 +320,27 @@ class MovieInfo
         return $similar_movies;
     }
 
-    public function get_movie_reviews($movie) {
-
+    public function get_movie_reviews($movie)
+    {
         $movie_id = $movie['id'];
         $reviews = array();
         $endpoint = "https://api.themoviedb.org/3/movie/$movie_id/reviews?api_key=". $this->api_key . "&language=en-US&page=1";
         $response = wp_remote_get($endpoint);
-        if(is_wp_error($response)) {
-        return $reviews;
+        if (is_wp_error($response)) {
+            return $reviews;
         }
         $data = json_decode(wp_remote_retrieve_body($response), true);
 
-        if(!empty($data['results'])) {
-        foreach($data['results'] as $result) {
-        $review = array(
-        'author' => $result['author'],
-        'content' => $result['content'],
-        'created_at' => $result['created_at']
-        );
-        array_push($reviews, $review);
-        }
+        if (!empty($data['results'])) {
+            foreach ($data['results'] as $result) {
+                $review = array(
+                'author' => $result['author'],
+                'content' => $result['content'],
+                'created_at' => $result['created_at']
+                );
+                array_push($reviews, $review);
+            }
         }
         return $reviews;
-        }
+    }
 }

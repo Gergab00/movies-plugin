@@ -24,10 +24,10 @@ foreach ($organized_movies as $month_year => $movies) {
                 <p style="height: 6rem;">
                 <?php
                 echo 'Genres: ';
-                foreach ($movie['genres'] as $genre_id) {
-                    echo '<span class="badge text-bg-light">' . $genre_id . '</span> ';
-                }
-                ?>
+        foreach ($movie['genres'] as $genre_id) {
+            echo '<span class="badge text-bg-light">' . $genre_id . '</span> ';
+        }
+        ?>
                 </p>
                 <a href="<?php echo $this->create_movie_link($movie); ?>" class="btn btn-primary">See more details</a>
             </div>

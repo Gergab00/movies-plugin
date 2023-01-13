@@ -155,7 +155,6 @@ function display_movies_pagination($movies)
 
 function display_actors_pagination($actors)
 {
-
     //calculate the total number of pages
     $total_pages = ceil(count($actors) / 12);
 
@@ -209,7 +208,7 @@ function sort_array_alphabetically($array)
     $param = null;
     if (array_key_exists('name', $array)) {
         $param = 'name';
-    } else if (array_key_exists('title', $array)) {
+    } elseif (array_key_exists('title', $array)) {
         $param = 'title';
     }
 
