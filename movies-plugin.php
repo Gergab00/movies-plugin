@@ -45,6 +45,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/classes/MovieInfo.php';
 require_once plugin_dir_path(__FILE__) . 'includes/classes/ActorInfo.php';
 require plugin_dir_path(__FILE__) .'blocks/build/upcoming-movies/upcoming-movies.php';
 require plugin_dir_path(__FILE__) .'blocks/build/most-popular-actor/most-popular-actor.php';
+require plugin_dir_path(__FILE__) .'blocks/build/search-form/search-form.php';
 
 $movies_plugin_options = get_option('movies_plugin_options'); // Array of All Options
 $api_key = $movies_plugin_options['api_key']; // API Key
@@ -54,6 +55,7 @@ $movie_info = new MovieInfo(API_KEY);
 $actor_info = new ActorInfo(API_KEY);
 $upcomingmovies = new UpcomingMovies();
 $mostpopularactor = new MostPopularActor();
+$searchform = new SearchForm();
 
 $movies_id = $movie_info->getMovies();
 $movies_details = array();
@@ -70,5 +72,7 @@ foreach ($actors_id as $id) {
 }
 $mostpopularactor->setActor($actors_details);
 $mostpopularactor->init();
+
+$searchform->init();
 
 register_activation_hook(__FILE__, 'activate_movies_plugin');

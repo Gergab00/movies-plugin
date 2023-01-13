@@ -4,8 +4,8 @@
 	"description": "A plugin that shows information about the latest and most popular movies and actors, using data from the MovieDB API.",
 	"main": "index.js",
 	"scripts": {
-		"build": "wp-scripts build --webpack-copy-php --webpack-src-dir=./blocks/src --output-path=./blocks/build",
-		"start": "wp-scripts start --webpack-copy-php --webpack-src-dir=./blocks/src --output-path=./blocks/build",
+		"build": "wp-scripts build --webpack-copy-php --webpack-copy-js --webpack-src-dir=./blocks/src --output-path=./blocks/build",
+		"start": "wp-scripts start --webpack-copy-php --webpack-copy-js --webpack-src-dir=./blocks/src --output-path=./blocks/build",
 		"watch-run-css": "nodemon --watch assets/sass/ --ext scss --exec \"npm run css\"",
 		"css": "sass --style expanded --source-map --embed-sources --quiet assets/sass/style.scss assets/css/style.css",
 		"watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",

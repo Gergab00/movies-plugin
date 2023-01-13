@@ -1,0 +1,17 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "movies-plugin/search-form",
+	"category": "widgets",
+	"version": "0.9.0",
+	"title": "Search Form",
+	"icon": "block-default",
+	"description": "Block to show a search bar.",
+	"attributes": {},
+	"supports": {},
+	"textdomain": "movies-plugin",
+	"script": "file:./js/script.js",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
