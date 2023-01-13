@@ -51,6 +51,14 @@ class UpcomingMovies
   return $this->movies;
  }
 
+ /**
+  *
+  * Organize movies by date
+  *
+  * @param array $movies Movies data on JSON format
+  * @return array Movies organized by date
+  *
+  */
  public function organize_by_date($movies)
  {
   $organized_movies = array();

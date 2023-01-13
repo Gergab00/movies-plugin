@@ -37,10 +37,10 @@ export default function Edit({attributes, setAttributes}) {
 
 	return (
 		<div { ...useBlockProps() }>
-			<Panel header="Upcoming Movies">
+			<Panel header="Most Popular Actor">
 				<PanelBody title={ bodyTitle } opened={ opened }>
 					<PanelRow>
-						{ __( 'Upcoming Movies – Here the cards with the movies will be shown.', 'movies-plugin' ) }
+						{ __( 'Most Popular Actor – Here the cards with the actors will be shown.', 'movies-theme' ) }
 					</PanelRow>
 				</PanelBody>
 			</Panel>

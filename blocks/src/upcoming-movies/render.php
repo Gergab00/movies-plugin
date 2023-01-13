@@ -1,13 +1,5 @@
 <?php
-/**
- * 
- * 
- * @author Gerardo Gonzalez
- * @version 1.0.2
- * @since 1.0.2
- * @package portafolio-theme
- * 
- */
+
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 

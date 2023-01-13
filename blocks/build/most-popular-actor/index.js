@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./blocks/src/upcoming-movies/edit.js":
-/*!********************************************!*\
-  !*** ./blocks/src/upcoming-movies/edit.js ***!
-  \********************************************/
+/***/ "./blocks/src/most-popular-actor/edit.js":
+/*!***********************************************!*\
+  !*** ./blocks/src/most-popular-actor/edit.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./blocks/src/upcoming-movies/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./blocks/src/most-popular-actor/editor.scss");
 
 /**
  * Retrieves the translation of text.
@@ -62,19 +62,19 @@ function Edit(_ref) {
   const bodyTitle = 'My Block Settings';
   const opened = true;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Panel, {
-    header: "Upcoming Movies"
+    header: "Most Popular Actor"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: bodyTitle,
     opened: opened
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Upcoming Movies – Here the cards with the movies will be shown.', 'movies-plugin')))));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Most Popular Actor – Here the cards with the actors will be shown.', 'movies-theme')))));
 }
 
 /***/ }),
 
-/***/ "./blocks/src/upcoming-movies/index.js":
-/*!*********************************************!*\
-  !*** ./blocks/src/upcoming-movies/index.js ***!
-  \*********************************************/
+/***/ "./blocks/src/most-popular-actor/index.js":
+/*!************************************************!*\
+  !*** ./blocks/src/most-popular-actor/index.js ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -84,9 +84,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./blocks/src/upcoming-movies/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./edit */ "./blocks/src/upcoming-movies/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block.json */ "./blocks/src/upcoming-movies/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./blocks/src/most-popular-actor/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./edit */ "./blocks/src/most-popular-actor/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block.json */ "./blocks/src/most-popular-actor/block.json");
 
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
@@ -126,10 +126,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./blocks/src/upcoming-movies/editor.scss":
-/*!************************************************!*\
-  !*** ./blocks/src/upcoming-movies/editor.scss ***!
-  \************************************************/
+/***/ "./blocks/src/most-popular-actor/editor.scss":
+/*!***************************************************!*\
+  !*** ./blocks/src/most-popular-actor/editor.scss ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -138,10 +138,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./blocks/src/upcoming-movies/style.scss":
-/*!***********************************************!*\
-  !*** ./blocks/src/upcoming-movies/style.scss ***!
-  \***********************************************/
+/***/ "./blocks/src/most-popular-actor/style.scss":
+/*!**************************************************!*\
+  !*** ./blocks/src/most-popular-actor/style.scss ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -200,13 +200,13 @@ module.exports = window["wp"]["i18n"];
 
 /***/ }),
 
-/***/ "./blocks/src/upcoming-movies/block.json":
-/*!***********************************************!*\
-  !*** ./blocks/src/upcoming-movies/block.json ***!
-  \***********************************************/
+/***/ "./blocks/src/most-popular-actor/block.json":
+/*!**************************************************!*\
+  !*** ./blocks/src/most-popular-actor/block.json ***!
+  \**************************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"movies-plugin/upcoming-movies","category":"widgets","version":"1.0.2","title":"Upcoming Movies","icon":"block-default","description":"Show the Upcoming movies","attributes":{},"supports":{},"textdomain":"movies-plugin","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"movies-plugin/most-popular-actor","category":"widgets","version":"1.0.2","title":"Most Popular Actor","icon":"block-default","description":"Show the Top 10 most popular actors in the database.","attributes":{},"supports":{},"textdomain":"movies-plugin","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 
@@ -322,8 +322,8 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"upcoming-movies/index": 0,
-/******/ 			"upcoming-movies/style-index": 0
+/******/ 			"most-popular-actor/index": 0,
+/******/ 			"most-popular-actor/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -375,7 +375,7 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["upcoming-movies/style-index"], () => (__webpack_require__("./blocks/src/upcoming-movies/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["most-popular-actor/style-index"], () => (__webpack_require__("./blocks/src/most-popular-actor/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
