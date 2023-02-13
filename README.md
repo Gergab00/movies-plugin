@@ -2,14 +2,14 @@
 This plugin allows you to display information about the latest and most popular movies and actors on your website, by receiving data from a third-party API.
 
 ## Features
--Displays upcoming and popular movies on your website
--Showcases actors and their details
--Includes a trailer for the movies
--Includes a cast for the movies
+- Displays upcoming and popular movies on your website
+- Showcases actors and their details
+- Includes a trailer for the movies
+- Includes a cast for the movies
 
 ## Requirements
--A [TMDB API key](https://www.themoviedb.org/settings/api)
--Wordpress version 4.0 or higher
+- A [TMDB API key](https://www.themoviedb.org/settings/api)
+- Wordpress version 4.0 or higher
 
 ## Installation
 1. Download the plugin from the WordPress repository or from GitHub
